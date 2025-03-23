@@ -1,7 +1,82 @@
 # .github
-alchemy account abstraction quick links reference
-https://accountkit.alchemy.com/
-https://demo.alchemy.com/
-https://www.alchemy.com/blog/introducing-account-kit
-https://www.alchemy.com/smart-wallets
-https://accountkit.alchemy.com/react/quickstart
+alchemy account abstraction quick links reference<br />
+https://accountkit.alchemy.com/<br />
+https://demo.alchemy.com/<br />
+https://www.alchemy.com/blog/introducing-account-kit<br />
+https://www.alchemy.com/smart-wallets<br />
+https://accountkit.alchemy.com/react/quickstart<br />
+
+Integrating Alchemy Account Kit v4.x.x with Next.js for Account Abstraction
+Account Abstraction (AA) is emerging as a pivotal advancement in the Web3 landscape, addressing the complexities often associated with traditional cryptocurrency wallets and aiming to provide a more seamless user experience 1. By enabling smart contracts to function as user-controlled accounts, AA introduces possibilities such as social recovery, multi-signature authorization, and the abstraction of gas fees, aligning the user experience more closely with the familiar interactions of Web2 applications 3. Alchemy Account Kit serves as a comprehensive toolkit designed to simplify the integration of these powerful AA features into Web3 applications 1. This kit provides developers with a suite of tools, including UI components, React Hooks, and backend infrastructure, to facilitate the creation of AA-enabled applications without delving into the intricate details of ERC-4337 1.
+The combination of Alchemy Account Kit's React-based SDK and the Next.js framework presents a robust solution for building scalable and performant full-stack Web3 applications 5. Next.js, with its features like server-side rendering (SSR) and efficient routing, complements the functionalities of the Account Kit, leading to enhanced application performance and improved search engine optimization 7. This report aims to provide a detailed, step-by-step guide for developers seeking to integrate Alchemy Account Kit v4.x.x into their Next.js projects using npm, establishing a solid foundation for leveraging the benefits of account abstraction.
+For developers embarking on a new Next.js project, Alchemy offers a convenient template that streamlines the initial setup process 5. By executing the command yarn create next-app account-kit-app -e https://github.com/avarobinson/account-kit-quickstart or its npm equivalent, a new project is bootstrapped with Account Kit integration already configured 5. This template provides a functional example out of the box, significantly reducing the time and effort required for initial setup and offering a working reference point for further development 6.
+For those integrating Alchemy Account Kit into an existing Next.js project, a series of straightforward steps ensures a smooth process 5. The integration requires a minimum React version of 18 and TypeScript version of 5 5. It is also recommended to pin the versions of core dependencies to ensure compatibility: viem@2.20.0 and wagmi@2.12.7 5. These specific versions are known to work well with the Account Kit SDK, preventing potential issues arising from updates in newer versions 5. The core Account Kit packages, along with a data fetching library, are installed using the command: yarn add @account-kit/infra @account-kit/react @tanstack/react-query 5. These packages provide the foundational infrastructure, React-specific components, and asynchronous data management capabilities necessary for the integration 5. Styling for the Account Kit UI components relies on Tailwind CSS, which, along with its peer dependencies, is installed using: yarn add -D tailwindcss postcss autoprefixer 5. Tailwind CSS is a prerequisite for utilizing the pre-built UI components offered by the Account Kit, while PostCSS and Autoprefixer are essential for processing and ensuring cross-browser compatibility of the Tailwind styles 5.
+To configure Tailwind CSS for styling the Account Kit UI components, developers can initiate the setup by running npx tailwindcss init -p if these files are not already present in the project 5. This command generates tailwind.config.ts and postcss.config.ts files. The postcss.config.ts file needs to be configured to include the Tailwind CSS and Autoprefixer plugins to ensure proper processing of styles 5:
+
+JavaScript
+
+
+// postcss.config.mjs
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
+    "autoprefixer": {},
+  },
+};
+
+
+This configuration allows PostCSS to use the Tailwind CSS plugin for transforming styles and Autoprefixer to add necessary vendor prefixes for broader browser support. Finally, a global.css file should be created or updated to include the Tailwind CSS directives, which inject the base, component, and utility styles of Tailwind into the application 5:
+
+CSS
+
+
+/* global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+The Alchemy Account Kit v4.x.x SDK is structured into several modular packages, all prefixed with @account-kit/, allowing developers to select the level of abstraction that suits their project's needs 4. Key packages include @account-kit/react, @account-kit/core, @account-kit/infra, @account-kit/signer, and @account-kit/smart-contracts 4. The @account-kit/react package provides React-specific components and hooks, simplifying the integration of authentication and UI elements 4. The @account-kit/core package offers core functionalities and abstractions for interacting with the Account Kit infrastructure, independent of any UI framework 4. It serves as the central hub for authentication logic and smart account management 8. For developers requiring more granular control, the @account-kit/infra package provides lower-level tools for direct interaction with Alchemy's AA infrastructure, enabling custom implementations of signers and smart contracts 4. This package is particularly useful for advanced use cases involving custom smart contract logic or specific gas management requirements 9. The modularity of this structure allows for code reusability and helps in reducing the application's bundle size by importing only the necessary modules.
+For implementing user authentication, Alchemy Account Kit provides pre-built UI components that streamline the process. Modal-based authentication can be easily implemented using the useAuthModal hook from @account-kit/react 1. By importing this hook and calling the openAuthModal function within a button's onClick handler, a clean and focused authentication modal is presented to the user 1. This approach offers a non-disruptive way for users to initiate the login process 10. Alternatively, embedded authentication can be integrated using the AuthCard component, also available from @account-kit/react 1. Rendering the AuthCard component directly within the application's layout or on a dedicated login page provides a more integrated authentication experience 10.
+The look and feel of the authentication UI can be extensively customized using the AlchemyAccountsUIConfig object 10. By creating a config.ts file, developers can define the UI configuration using the auth property within this object 10. The sections array within the auth property allows for the ordering and grouping of different authentication options, each defined as an AuthTypes object 10. Available AuthTypes include "email" for email-based login (OTP and Magic Link), "passkey" for passkey login and signup, "external_wallets" for connecting existing Externally Owned Accounts (EOAs) via browser extensions or WalletConnect, and "social" for integrating social login providers like Google and Facebook 10. Configuring these types allows developers to tailor the authentication interface to match their application's branding and desired user flow 10.
+For developers who require complete control over the authentication UI and flow, Alchemy Account Kit offers React Hooks. The useAuthenticate hook, imported from @account-kit/react, is fundamental for initiating the authentication process for various methods like email, social login, and passkeys 12. The authenticate function returned by this hook is used with specific parameters depending on the chosen method 12. For social login, the hook supports both redirect and popup flows, with the latter requiring the enablePopupOauth option to be set to true in the configuration 12. The isPending property returned by the hook helps in managing loading states during authentication 12. The useUser hook provides access to the authenticated user's information, such as their address and account type ("eoa" or "sca"), simplifying the process of checking login status and accessing user details 12. To interact with the user's smart contract account, the useAccount hook can be used 12. This hook returns the smart contract account instance (account), its address, and a loading state (isLoadingAccount), enabling actions like sending transactions on behalf of the user's smart account 12.
+Alchemy Account Kit supports a variety of login providers, each configurable to suit different application requirements 5. Email OTP and Email Magic Link are enabled by toggling the "Email auth" option in the Account Kit Dashboard and specifying a Redirect URL 5. Social login providers like Google and Facebook can be enabled by toggling the respective options in the dashboard, adding http://localhost:3000 as a whitelisted origin for testing, and the application's production URL for deployment 5. Passkey authentication, with email backup and existing passkey login, is also configurable within the dashboard 13. The authenticate function is used with the appropriate type (e.g., "email", "oauth", "passkey") to initiate the login flow for each provider 12. All these configurations are managed within the Alchemy Account Kit Dashboard, where a new account config is created and applied to the specific Alchemy app, allowing for customization of authentication methods 5.
+The AlchemyAccountProvider component, imported from @account-kit/react, plays a crucial role in integrating Alchemy Account Kit into a React application 5. It acts as a React Context provider, wrapping the application to provide access to the Account Kit's functionalities and manage the authentication state 5. This provider initializes the Alchemy client and makes it accessible to its descendant components through React Context, handling the underlying logic for authentication and smart account management 5. It requires several key props for proper configuration 5:
+
+
+
+
+Prop
+Type
+Description
+config
+AlchemySdkConfig (from @account-kit/react)
+Required. The main configuration object for the Alchemy Account Kit, including the API key, chain, and UI settings. Created using createConfig.
+queryClient
+QueryClient (from @tanstack/react-query)
+Required. An instance of the TanStack Query client, used by the AlchemyAccountProvider for managing asynchronous operations like authentication and fetching user data.
+initialState
+AlchemyClientState (from @account-kit/core)
+Optional. Used specifically for Server-Side Rendering (SSR) in Next.js applications. This prop allows you to initialize the Account Kit state on the server with data typically retrieved from cookies, ensuring state persistence across page loads.
+
+In a Next.js application, the AlchemyAccountProvider is typically used within the app/providers.tsx file, wrapping the application with both QueryClientProvider and AlchemyAccountProvider 5. The queryClient and config objects are passed to their respective providers 5. For server-side rendering, the initialState prop is utilized in the app/layout.tsx file. By importing cookieToInitialState from @account-kit/core and headers from next/headers, the initial state is retrieved from cookies and passed to the AlchemyAccountProvider, ensuring state persistence across page loads 5.
+A successful integration of Alchemy Account Kit requires several npm dependencies 5. @account-kit/infra provides the necessary infrastructure layer 5. @account-kit/react contains the React-specific components and hooks 5. @tanstack/react-query is used for asynchronous state management 5. tailwindcss is essential for styling the UI components 5. postcss and autoprefixer are required for processing Tailwind CSS 5. Additionally, viem and wagmi are used internally by the Account Kit for blockchain interactions 5. These dependencies are typically installed using npm install or yarn add. It is crucial to pin the versions of viem (e.g., 2.20.0) and wagmi (e.g., 2.12.7) as recommended in the documentation to ensure stability and compatibility 5.
+The Alchemy demo available at https://demo.alchemy.com/ offers valuable insights into the practical implementation of the Account Kit 14. It showcases various authentication methods, including email, social logins, and passkeys, and demonstrates the use of pre-built UI components for login and wallet connection 14. The demo also highlights customization options for branding and appearance and illustrates the functionality of "Smart Accounts," including "Smart EOA (EIP-7702)" 14. By exploring this demo, developers can observe how different authentication methods are configured within the AlchemyAccountsUIConfig and how the useAuthModal hook is used to initiate the authentication flow 14. The demo likely provides examples of using other Account Kit hooks for accessing user and account information, serving as a practical guide for integration strategies 14.
+For Next.js integration, implementing Server-Side Rendering (SSR) is crucial for maintaining a consistent account state between the server and the client 5. This is achieved by setting the ssr option to true in the createConfig function and using cookieStorage for persisting account state across page loads 5. In the layout.tsx file, the initialState prop of AlchemyAccountProvider is used in conjunction with cookieToInitialState to hydrate the client-side state from server-rendered cookies 5. This approach not only enhances the user experience through faster initial page loads but also ensures consistent authentication state throughout the application 7. Security is paramount when handling API keys and authentication credentials 5. It is recommended to protect the Alchemy API key, especially in production, by potentially proxying requests through a backend 5. Best practices for managing OAuth credentials should be followed if custom credentials are used 13. Additionally, ensuring that redirect URLs are correctly configured in the Account Kit Dashboard helps prevent unauthorized access 5. While Alchemy Account Kit provides extensive functionality, it also offers flexibility for customization and extension 1. Developers can leverage React Hooks to build entirely custom authentication UIs and flows or explore the lower-level packages for advanced use cases 12. The AlchemyAccountsUIConfig also provides various customization options for theming and branding 10.
+In conclusion, integrating Alchemy Account Kit v4.x.x into a Next.js project using npm provides a robust foundation for leveraging the benefits of account abstraction. By following the outlined steps for project setup, dependency management, UI component utilization, React Hook implementation, login provider configuration, and understanding the role of the AlchemyAccountProvider, developers can confidently embark on building user-friendly and powerful Web3 applications. The insights gained from the Alchemy demo and the consideration of advanced topics like SSR and security further solidify the integration process. This guide serves as a comprehensive point of departure, equipping developers with the knowledge and resources necessary to successfully integrate Alchemy Account Kit and enhance the user experience of their Next.js Web3 applications.
+Works cited
+Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/
+Alchemy Account Kit - Lit Protocol, accessed on March 21, 2025, https://developer.litprotocol.com/integrations/aa/alchemy-account-kit
+Alchemy Account Abstraction (AA) SDK for Golang - GitHub, accessed on March 21, 2025, https://github.com/anyproto/alchemy-aa-sdk
+alchemyplatform/aa-sdk - Account Kit - GitHub, accessed on March 21, 2025, https://github.com/alchemyplatform/aa-sdk
+React Quickstart – Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/quickstart
+avarobinson/account-kit-quickstart: NextJS template for embedded accounts UI components alpha quickstart guide - GitHub, accessed on March 21, 2025, https://github.com/avarobinson/account-kit-quickstart
+Rendering: Client Components - Next.js, accessed on March 21, 2025, https://nextjs.org/docs/app/building-your-application/rendering/client-components
+Core Quickstart - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/core/quickstart
+Quickstart - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/infra/quickstart
+Authentication with UI componenets – Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/ui-components
+Getting started with authentication - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/getting-started
+Authentication with our React hooks - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/react-hooks
+Authenticate Users - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/core/authenticate-users
+Account Kit Demo, accessed on March 21, 2025, https://demo.alchemy.com/
+
