@@ -52,21 +52,31 @@ For Next.js integration, implementing Server-Side Rendering (SSR) is crucial for
 Integrating Alchemy Account Kit v4.x.x into a Next.js project using npm provides a robust foundation for leveraging the benefits of account abstraction. By following the outlined steps for project setup, dependency management, UI component utilization, React Hook implementation, login provider configuration, and understanding the role of the AlchemyAccountProvider, developers can confidently embark on building user-friendly and powerful Web3 applications. The insights gained from the Alchemy demo and the consideration of advanced topics like SSR and security further solidify the integration process. This guide serves as a comprehensive point of departure, equipping developers with the knowledge and resources necessary to successfully integrate Alchemy Account Kit and enhance the user experience of their Next.js Web3 applications.
 Works cited
 ```txt
-Alchemy Account Kit, accessed on March 21, 2025
+Alchemy Account Kit
 https://accountkit.alchemy.com/
-Alchemy Account Kit - Lit Protocol, accessed on March 21, 2025
+Alchemy Account Kit - Lit Protocol
 https://developer.litprotocol.com/integrations/aa/alchemy-account-kit
-Alchemy Account Abstraction (AA) SDK for Golang - GitHub, accessed on March 21, 2025
+Alchemy Account Abstraction (AA) SDK for Golang - GitHub
 https://github.com/anyproto/alchemy-aa-sdk
-alchemyplatform/aa-sdk - Account Kit - GitHub, accessed on March 21, 2025, https://github.com/alchemyplatform/aa-sdk
-React Quickstart – Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/quickstart
-avarobinson/account-kit-quickstart: NextJS template for embedded accounts UI components alpha quickstart guide - GitHub, accessed on March 21, 2025, https://github.com/avarobinson/account-kit-quickstart
-Rendering: Client Components - Next.js, accessed on March 21, 2025, https://nextjs.org/docs/app/building-your-application/rendering/client-components
-Core Quickstart - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/core/quickstart
-Quickstart - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/infra/quickstart
-Authentication with UI componenets – Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/ui-components
-Getting started with authentication - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/getting-started
-Authentication with our React hooks - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/react-hooks
-Authenticate Users - Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/core/authenticate-users
-Account Kit Demo, accessed on March 21, 2025, https://demo.alchemy.com/
+alchemyplatform/aa-sdk - Account Kit - GitHub
+https://github.com/alchemyplatform/aa-sdk
+React Quickstart – Account Kit
+https://accountkit.alchemy.com/react/quickstart
+avarobinson/account-kit-quickstart: NextJS template for embedded accounts UI components alpha quickstart guide - GitHub
+https://github.com/avarobinson/account-kit-quickstart
+Rendering: Client Components - Next.js
+https://nextjs.org/docs/app/building-your-application/rendering/client-components
+Core Quickstart - Alchemy Account Kit
+https://accountkit.alchemy.com/core/quickstart
+Quickstart - Alchemy Account Kit
+https://accountkit.alchemy.com/infra/quickstart
+Authentication with UI componenets – Account Kit
+https://accountkit.alchemy.com/react/ui-components
+Getting started with authentication - Alchemy Account Kit
+https://accountkit.alchemy.com/react/getting-started
+Authentication with our React hooks - Alchemy Account Kit
+https://accountkit.alchemy.com/react/react-hooks
+Authenticate Users - Alchemy Account Kit
+https://accountkit.alchemy.com/core/authenticate-users
+Account Kit Demo https://demo.alchemy.com/
 ```
