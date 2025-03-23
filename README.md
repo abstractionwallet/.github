@@ -52,9 +52,12 @@ For Next.js integration, implementing Server-Side Rendering (SSR) is crucial for
 Integrating Alchemy Account Kit v4.x.x into a Next.js project using npm provides a robust foundation for leveraging the benefits of account abstraction. By following the outlined steps for project setup, dependency management, UI component utilization, React Hook implementation, login provider configuration, and understanding the role of the AlchemyAccountProvider, developers can confidently embark on building user-friendly and powerful Web3 applications. The insights gained from the Alchemy demo and the consideration of advanced topics like SSR and security further solidify the integration process. This guide serves as a comprehensive point of departure, equipping developers with the knowledge and resources necessary to successfully integrate Alchemy Account Kit and enhance the user experience of their Next.js Web3 applications.
 Works cited
 ```txt
-Alchemy Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/
-Alchemy Account Kit - Lit Protocol, accessed on March 21, 2025, https://developer.litprotocol.com/integrations/aa/alchemy-account-kit
-Alchemy Account Abstraction (AA) SDK for Golang - GitHub, accessed on March 21, 2025, https://github.com/anyproto/alchemy-aa-sdk
+Alchemy Account Kit, accessed on March 21, 2025
+https://accountkit.alchemy.com/
+Alchemy Account Kit - Lit Protocol, accessed on March 21, 2025
+https://developer.litprotocol.com/integrations/aa/alchemy-account-kit
+Alchemy Account Abstraction (AA) SDK for Golang - GitHub, accessed on March 21, 2025
+https://github.com/anyproto/alchemy-aa-sdk
 alchemyplatform/aa-sdk - Account Kit - GitHub, accessed on March 21, 2025, https://github.com/alchemyplatform/aa-sdk
 React Quickstart – Account Kit, accessed on March 21, 2025, https://accountkit.alchemy.com/react/quickstart
 avarobinson/account-kit-quickstart: NextJS template for embedded accounts UI components alpha quickstart guide - GitHub, accessed on March 21, 2025, https://github.com/avarobinson/account-kit-quickstart
